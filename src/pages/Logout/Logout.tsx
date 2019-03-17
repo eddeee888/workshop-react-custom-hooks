@@ -1,11 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router';
-import ViewerContext from 'src/common/components/ViewerContext';
+import UsersContext from 'src/common/components/UsersContext';
+import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
 
 const Logout: React.FunctionComponent = () => {
-  const { clearViewer } = useContext(ViewerContext);
+  const { viewer, clearViewer } = useContext(ViewerContext);
+  const { removeUser } = useContext(UsersContext);
 
-  clearViewer();
+  if (!viewer) {
+    return <Redirect to="/" />;
+  }
+
+  useEffect(() => {
+    alert(`Logging out from ${viewer.email}`);
+
+    return () => {
+      const deleteConfirmation = confirm(
+        `Would you like to delete your account (${viewer.email}) as well?`
+      );
+      if (deleteConfirmation) {
+        removeUser(viewer.email);
+      }
+      clearViewer();
+    };
+  });
 
   return <Redirect to="/" />;
 };
