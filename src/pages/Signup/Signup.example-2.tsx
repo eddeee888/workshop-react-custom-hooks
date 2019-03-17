@@ -1,28 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router';
 import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
-
-interface State {
-  email: string;
-  password: string;
-}
+import useForm from 'src/common/hooks/useForm/useForm.answer-2';
 
 const Signup: React.FunctionComponent = () => {
-  const [values, setValues] = useState<State>({
+  const [{ email, password }, { setEmail, setPassword }] = useForm({
     email: '',
     password: ''
   });
-
-  function setEmail(email: string): void {
-    setValues({ email, ...values });
-  }
-
-  function setPassword(password: string): void {
-    setValues({ password, ...values });
-  }
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -42,7 +30,7 @@ const Signup: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={values.email}
+              value={email}
               onChange={e => setEmail(e.target.value)}
             />
           </div>
@@ -55,7 +43,7 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={values.password}
+              value={password}
               onChange={e => setPassword(e.target.value)}
             />
           </div>
@@ -64,8 +52,8 @@ const Signup: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              addUser({ email: values.email, password: values.password });
-              setViewer({ email: values.password });
+              addUser({ email, password });
+              setViewer({ email });
             }}
           >
             Sign up

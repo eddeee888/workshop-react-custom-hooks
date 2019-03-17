@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-function useForm<S>(
-  initialValues: S
-): [S, React.Dispatch<React.SetStateAction<S>>] {
-  const [values, setValues] = useState<S>(initialValues);
+interface State {
+  email: string;
+  password: string;
+}
+
+function useForm(
+  initialValues: State
+): [State, Dispatch<SetStateAction<State>>] {
+  const [values, setValues] = useState<State>(initialValues);
 
   return [values, setValues];
 }

@@ -4,7 +4,6 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext';
-import useForm from 'src/common/hooks/useForm/useForm.example-1';
 
 interface State {
   email: string;
@@ -12,10 +11,19 @@ interface State {
 }
 
 const Login: React.FunctionComponent = () => {
-  const [{ email, password }, setValue] = useForm<State>({
+  const [values, setValues] = useState<State>({
     email: '',
     password: ''
   });
+
+  function setEmail(email: string): void {
+    setValues({ email, ...values });
+  }
+
+  function setPassword(password: string): void {
+    setValues({ password, ...values });
+  }
+
   const [error, setError] = useState('');
 
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -36,8 +44,8 @@ const Login: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={email}
-              onChange={e => setValue({ email: e.target.value, password })}
+              value={values.email}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
         </Row>
@@ -49,8 +57,8 @@ const Login: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={password}
-              onChange={e => setValue({ password: e.target.value, email })}
+              value={values.password}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
         </Row>
@@ -63,10 +71,10 @@ const Login: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              const valid = checkUserCredentials(email, password);
+              const valid = checkUserCredentials(values.email, values.password);
 
               if (valid) {
-                setViewer({ email });
+                setViewer({ email: values.email });
               } else {
                 setError(
                   'The email/password combination you entered is incorrect.'
