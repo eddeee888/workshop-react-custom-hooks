@@ -8,6 +8,7 @@ const Nav: React.FunctionComponent = () => {
   return (
     <nav>
       <NavLink to="/">Home</NavLink>
+      <NavLink to="/survey">Survey</NavLink>
       {!viewer && (
         <>
           <NavLink to="/signup">Sign up</NavLink>
