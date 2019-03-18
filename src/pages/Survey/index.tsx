@@ -1,2 +1,2 @@
-// export { default } from './Survey';
-export { default } from './Survey.example-3';
+export { default } from './Survey';
+// export { default } from './Survey.example-3';
