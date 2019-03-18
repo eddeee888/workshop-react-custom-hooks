@@ -13,7 +13,7 @@ interface State {
 }
 
 const Survey: React.FunctionComponent = () => {
-  const inputProps = useForm<State>({
+  const [values, inputs] = useForm<State>({
     email: '',
     firstName: '',
     lastName: '',
@@ -31,7 +31,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Email</label>
           </div>
           <div>
-            <input name="email" {...inputProps.email} />
+            <input name="email" {...inputs.email} />
           </div>
         </Row>
 
@@ -40,7 +40,7 @@ const Survey: React.FunctionComponent = () => {
             <label>First name</label>
           </div>
           <div>
-            <input name="firstName" {...inputProps.firstName} />
+            <input name="firstName" {...inputs.firstName} />
           </div>
         </Row>
 
@@ -49,7 +49,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Last name</label>
           </div>
           <div>
-            <input name="lastName" {...inputProps.lastName} />
+            <input name="lastName" {...inputs.lastName} />
           </div>
         </Row>
 
@@ -60,7 +60,7 @@ const Survey: React.FunctionComponent = () => {
             <label>What do you think about react hooks?</label>
           </div>
           <div>
-            <input name="question1" {...inputProps.question1} />
+            <input name="question1" {...inputs.question1} />
           </div>
         </Row>
 
@@ -69,7 +69,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Are you going to use hooks in your projects?</label>
           </div>
           <div>
-            <input name="question2" {...inputProps.question2} />
+            <input name="question2" {...inputs.question2} />
           </div>
         </Row>
 
@@ -78,7 +78,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Would you recommend hooks to your friends?</label>
           </div>
           <div>
-            <input name="question3" {...inputProps.question3} />
+            <input name="question3" {...inputs.question3} />
           </div>
         </Row>
 
@@ -86,22 +86,7 @@ const Survey: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              alert(
-                JSON.stringify({
-                  // @ts-ignore
-                  email: inputProps.email.value,
-                  // @ts-ignore
-                  firstName: inputProps.firstName.value,
-                  // @ts-ignore
-                  lastName: inputProps.lastName.value,
-                  // @ts-ignore
-                  question1: inputProps.question1.value,
-                  // @ts-ignore
-                  question2: inputProps.question2.value,
-                  // @ts-ignore
-                  question3: inputProps.question3.value
-                })
-              );
+              alert(JSON.stringify(values));
             }}
           >
             Submit
