@@ -88,12 +88,18 @@ const Survey: React.FunctionComponent = () => {
             onClick={() => {
               alert(
                 JSON.stringify({
-                  email: inputProps.email.name,
-                  firstName: inputProps.firstName.name,
-                  lastName: inputProps.lastName.name,
-                  question1: inputProps.question1.name,
-                  question2: inputProps.question2.name,
-                  question3: inputProps.question3.name
+                  // @ts-ignore
+                  email: inputProps.email.value,
+                  // @ts-ignore
+                  firstName: inputProps.firstName.value,
+                  // @ts-ignore
+                  lastName: inputProps.lastName.value,
+                  // @ts-ignore
+                  question1: inputProps.question1.value,
+                  // @ts-ignore
+                  question2: inputProps.question2.value,
+                  // @ts-ignore
+                  question3: inputProps.question3.value
                 })
               );
             }}

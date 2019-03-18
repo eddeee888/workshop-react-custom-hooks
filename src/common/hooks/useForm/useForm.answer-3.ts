@@ -17,6 +17,8 @@ function useForm<S>(initialValues: S): Result {
   Object.keys(values).forEach(key => {
     result[key] = {
       name: key,
+      // @ts-ignore
+      value: values[key],
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         setValues({ ...values, [key]: e.target.value })
     };
