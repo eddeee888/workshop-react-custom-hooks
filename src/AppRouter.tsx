@@ -36,13 +36,13 @@ const AppRouter = () => (
                   </div>
                   <ul>
                     <li>
-                      hook's setState vs traditional setState (exercise 1)
+                      hook's setState vs traditional setState + create function
+                      wrapper function (exercise 1)
                     </li>
+                    <li>create custom hooks to re-use logic (exercise 2)</li>
                     <li>
-                      re-using logic and return values using custom hooks
-                      (exercise 2)
+                      create a generic custom form hook: useForm (exercise 3)
                     </li>
-                    <li>create custom form hook: useForm (exercise 3)</li>
                   </ul>
                   <div>
                     Exercises can be found in:
@@ -58,16 +58,6 @@ const AppRouter = () => (
                   <div>
                     Answers can be found in <b>*.answer-*.tsx</b> files.
                   </div>
-                  <hr />
-                  <div>Sample tests and notes can be found in:</div>
-                  <ul>
-                    <li>
-                      <b>Signup.example-2.test.tsx</b>
-                    </li>
-                    <li>
-                      <b>Dashboard.example-3.test.tsx</b>
-                    </li>
-                  </ul>
                   <hr />
                   <div>More references and resources:</div>
                   <ul>
