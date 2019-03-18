@@ -12,7 +12,7 @@ How it works:
 
 Exercise 1:
 
-- Create `setEmail` and `setPassword` functions and use them for the `Login` page email and password inputs
+- Create `setEmail` and `setPassword` functions and use them for the `Login` page email and password inputs.
 
 `src/pages/Login/Login.tsx`
 
@@ -20,7 +20,7 @@ Answer:
 
 `src/pages/Login/Login.answer-1.tsx`
 
-## Exercise 2: Custom hooks
+## Exercise 2: Create a custom hook to share common logic
 
 Hook is a great way to re-use functionalities. Two components using the same hooks will benefit from having the same behaviour. For example, `useState` allows us the track and update the state of the component using it (but not the actual state value).
 
@@ -41,7 +41,7 @@ Answer:
 
 `src/pages/Login/Login.answer-2b.tsx`
 
-## Exercise 3: Create reusable and flexible custom hook
+## Exercise 3: Create custom hook to handle form inputs
 
 While `useAuthenticationForm` can be reused between `Login` and `Signup`, its reusability is limited to these 2 components. What if `Signup` has more fields such as first name and last name?
 
