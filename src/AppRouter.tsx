@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from 'src/common/components/Footer';
 import Main from 'src/common/components/Main';
 import Nav from 'src/common/components/Nav';
+import Paper from 'src/common/components/Paper';
 import Dashboard from 'src/pages/Dashboard';
 import Login from 'src/pages/Login';
 import Logout from 'src/pages/Logout';
 import Signup from 'src/pages/Signup';
-import Paper from './common/components/Paper';
+import Survey from 'src/pages/Survey';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -83,6 +84,7 @@ const AppRouter = () => (
                 </Paper>
               )}
             />
+            <Route path="/survey" component={Survey} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />

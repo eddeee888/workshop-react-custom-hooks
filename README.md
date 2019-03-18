@@ -1,6 +1,6 @@
-## React hooks workshop
+## React custom hooks workshop
 
-This is an introductory workshop for [React hooks](https://reactjs.org/docs/hooks-intro.html).
+This is an advanced workshop for [React custom hooks](https://reactjs.org/docs/hooks-custom.html).
 
 To get started, clone this repository to your computer.
 
