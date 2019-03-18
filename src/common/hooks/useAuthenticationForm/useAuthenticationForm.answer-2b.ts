@@ -10,7 +10,7 @@ interface StateFn {
   setPassword: (email: string) => void;
 }
 
-function useForm(initialValues: State): [State, StateFn] {
+function useAuthenticationForm(initialValues: State): [State, StateFn] {
   const [values, setValues] = useState<State>(initialValues);
 
   function setEmail(email: string): void {
@@ -24,4 +24,4 @@ function useForm(initialValues: State): [State, StateFn] {
   return [values, { setEmail, setPassword }];
 }
 
-export default useForm;
+export default useAuthenticationForm;

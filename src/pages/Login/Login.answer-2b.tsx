@@ -4,17 +4,14 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext';
-
-interface State {
-  email: string;
-  password: string;
-}
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2b';
 
 const Login: React.FunctionComponent = () => {
-  const [{ email, password }, setValue] = useState<State>({
-    email: '',
-    password: ''
-  });
+  const [
+    { email, password },
+    { setEmail, setPassword }
+  ] = useAuthenticationForm({ email: '', password: '' });
+
   const [error, setError] = useState('');
 
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -36,7 +33,7 @@ const Login: React.FunctionComponent = () => {
             <input
               name="email"
               value={email}
-              onChange={e => setValue({ email: e.target.value, password })}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
         </Row>
@@ -49,7 +46,7 @@ const Login: React.FunctionComponent = () => {
               name="password"
               type="password"
               value={password}
-              onChange={e => setValue({ password: e.target.value, email })}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
         </Row>

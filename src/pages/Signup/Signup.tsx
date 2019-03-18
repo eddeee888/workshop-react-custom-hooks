@@ -5,9 +5,17 @@ import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
 
+interface State {
+  email: string;
+  password: string;
+}
+
 const Signup: React.FunctionComponent = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, setValues] = useState<State>({
+    email: '',
+    password: ''
+  });
+  const { email, password } = values;
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -28,7 +36,7 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => setValues({ ...values, email: e.target.value })}
             />
           </div>
         </Row>
@@ -41,7 +49,7 @@ const Signup: React.FunctionComponent = () => {
               name="password"
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => setValues({ ...values, password: e.target.value })}
             />
           </div>
         </Row>
