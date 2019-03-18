@@ -3,7 +3,7 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import useForm from 'src/common/hooks/useForm/useForm.answer-3';
 
-interface State {
+interface Values {
   email: string;
   firstName: string;
   lastName: string;
@@ -13,7 +13,7 @@ interface State {
 }
 
 const Survey: React.FunctionComponent = () => {
-  const [values, inputs] = useForm<State>({
+  const [values, inputs] = useForm<Values>({
     email: '',
     firstName: '',
     lastName: '',
@@ -31,7 +31,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Email</label>
           </div>
           <div>
-            <input name="email" {...inputs.email} />
+            <input {...inputs.email} />
           </div>
         </Row>
 
@@ -40,7 +40,7 @@ const Survey: React.FunctionComponent = () => {
             <label>First name</label>
           </div>
           <div>
-            <input name="firstName" {...inputs.firstName} />
+            <input {...inputs.firstName} />
           </div>
         </Row>
 
@@ -49,7 +49,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Last name</label>
           </div>
           <div>
-            <input name="lastName" {...inputs.lastName} />
+            <input {...inputs.lastName} />
           </div>
         </Row>
 
@@ -60,7 +60,7 @@ const Survey: React.FunctionComponent = () => {
             <label>What do you think about react hooks?</label>
           </div>
           <div>
-            <input name="question1" {...inputs.question1} />
+            <input {...inputs.question1} />
           </div>
         </Row>
 
@@ -69,7 +69,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Are you going to use hooks in your projects?</label>
           </div>
           <div>
-            <input name="question2" {...inputs.question2} />
+            <input {...inputs.question2} />
           </div>
         </Row>
 
@@ -78,7 +78,7 @@ const Survey: React.FunctionComponent = () => {
             <label>Would you recommend hooks to your friends?</label>
           </div>
           <div>
-            <input name="question3" {...inputs.question3} />
+            <input {...inputs.question3} />
           </div>
         </Row>
 
