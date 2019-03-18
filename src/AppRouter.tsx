@@ -22,23 +22,27 @@ const AppRouter = () => (
               exact
               component={() => (
                 <Paper>
-                  <h1>Introduction to hooks workshop</h1>
+                  <h1>React custom hooks workshop</h1>
                   <div>
-                    This is an introductory workshop for{' '}
+                    This is a workshop for{' '}
                     <a
                       target="_blank"
-                      href="https://reactjs.org/docs/hooks-intro.html"
+                      href="https://reactjs.org/docs/hooks-custom.html"
                     >
-                      React hooks
+                      React custom hooks
                     </a>
-                    . In this workshop, we are going to be implementing a very
-                    simple sign up, log in, log out flow to learn the 3 most
-                    basic hooks:
+                    . In this workshop, we are going to be exploring the
+                    following concepts:
                   </div>
                   <ul>
-                    <li>useState (exercise 1)</li>
-                    <li>useContext (exercise 2)</li>
-                    <li>useEffect (exercise 3)</li>
+                    <li>
+                      hook's setState vs traditional setState (exercise 1)
+                    </li>
+                    <li>
+                      re-using logic and return values using custom hooks
+                      (exercise 2)
+                    </li>
+                    <li>create custom form hook: useForm (exercise 3)</li>
                   </ul>
                   <div>
                     Exercises can be found in:

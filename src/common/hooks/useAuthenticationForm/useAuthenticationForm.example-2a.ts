@@ -5,7 +5,7 @@ interface State {
   password: string;
 }
 
-function useForm(
+function useAuthenticationForm(
   initialValues: State
 ): [State, Dispatch<SetStateAction<State>>] {
   const [values, setValues] = useState<State>(initialValues);
@@ -13,4 +13,4 @@ function useForm(
   return [values, setValues];
 }
 
-export default useForm;
+export default useAuthenticationForm;

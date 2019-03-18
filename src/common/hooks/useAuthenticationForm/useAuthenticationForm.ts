@@ -1,5 +1,5 @@
-function useForm() {
+function useAuthenticationForm() {
   return null;
 }
 
-export default useForm;
+export default useAuthenticationForm;

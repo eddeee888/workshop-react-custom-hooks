@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router';
 import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
-
-interface State {
-  email: string;
-  password: string;
-}
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2b';
 
 const Signup: React.FunctionComponent = () => {
-  const [{ email, password }, setValues] = useState<State>({
+  const [
+    { email, password },
+    { setEmail, setPassword }
+  ] = useAuthenticationForm({
     email: '',
     password: ''
   });
@@ -35,7 +34,7 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="email"
               value={email}
-              onChange={e => setValues({ email: e.target.value, password })}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
         </Row>
@@ -48,7 +47,7 @@ const Signup: React.FunctionComponent = () => {
               name="password"
               type="password"
               value={password}
-              onChange={e => setValues({ password: e.target.value, email })}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
         </Row>
