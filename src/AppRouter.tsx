@@ -40,20 +40,16 @@ const AppRouter = () => (
                       wrapper function (exercise 1)
                     </li>
                     <li>create custom hooks to re-use logic (exercise 2)</li>
-                    <li>
-                      create a generic custom form hook: useForm (exercise 3)
-                    </li>
+                    <li>create useful custom hook: useForm (exercise 3)</li>
                   </ul>
                   <div>
-                    Exercises can be found in:
-                    <ul>
-                      <li>
-                        <b>Signup.tsx</b>: Exercise 1 and 2
-                      </li>
-                      <li>
-                        <b>Dashboard.tsx</b>: Exercise 3
-                      </li>
-                    </ul>
+                    Exercises can be found in:{' '}
+                    <a
+                      target="_blank"
+                      href="https://github.com/eddeee888/workshop-react-custom-hooks/blob/master/exercise.md"
+                    >
+                      exercise.md
+                    </a>
                   </div>
                   <div>
                     Answers can be found in <b>*.answer-*.tsx</b> files.
