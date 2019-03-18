@@ -11,10 +11,11 @@ interface State {
 }
 
 const Signup: React.FunctionComponent = () => {
-  const [{ email, password }, setValues] = useState<State>({
+  const [values, setValues] = useState<State>({
     email: '',
     password: ''
   });
+  const { email, password } = values;
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -35,7 +36,7 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="email"
               value={email}
-              onChange={e => setValues({ email: e.target.value, password })}
+              onChange={e => setValues({ ...values, email: e.target.value })}
             />
           </div>
         </Row>
@@ -48,7 +49,7 @@ const Signup: React.FunctionComponent = () => {
               name="password"
               type="password"
               value={password}
-              onChange={e => setValues({ password: e.target.value, email })}
+              onChange={e => setValues({ ...values, password: e.target.value })}
             />
           </div>
         </Row>
