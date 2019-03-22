@@ -36,10 +36,10 @@ const AppRouter = () => (
                   </div>
                   <ul>
                     <li>
-                      Hook's setState vs traditional setState + create wrapper
-                      functions (exercise 1).
+                      Extracting common logic and typings into hooks (exercise
+                      1).
                     </li>
-                    <li>Create custom hooks to re-use logic (exercise 2).</li>
+                    <li>Create custom hooks and return values (exercise 2).</li>
                     <li>
                       Create a custom hook to handle form inputs state: useForm
                       (exercise 3).
