@@ -4,10 +4,13 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext';
-import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-1';
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-2';
 
 const Login: React.FunctionComponent = () => {
-  const [values, setValues] = useAuthenticationForm();
+  const [
+    { email, password },
+    { setEmail, setPassword }
+  ] = useAuthenticationForm();
 
   const [error, setError] = useState('');
 
@@ -29,8 +32,8 @@ const Login: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={values.email}
-              onChange={e => setValues({ ...values, email: e.target.value })}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
         </Row>
@@ -42,8 +45,8 @@ const Login: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={values.password}
-              onChange={e => setValues({ ...values, password: e.target.value })}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
         </Row>
@@ -56,10 +59,10 @@ const Login: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              const valid = checkUserCredentials(values.email, values.password);
+              const valid = checkUserCredentials(email, password);
 
               if (valid) {
-                setViewer({ email: values.email });
+                setViewer({ email });
               } else {
                 setError(
                   'The email/password combination you entered is incorrect.'

@@ -1,28 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router';
 import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
-
-interface State {
-  email: string;
-  password: string;
-}
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-1';
 
 const Signup: React.FunctionComponent = () => {
-  const [values, setValues] = useState<State>({
-    email: '',
-    password: ''
-  });
-
-  function setEmail(email: string): void {
-    setValues({ email, ...values });
-  }
-
-  function setPassword(password: string): void {
-    setValues({ password, ...values });
-  }
+  const [values, setValues] = useAuthenticationForm();
+  const { email, password } = values;
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -42,8 +28,8 @@ const Signup: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={values.email}
-              onChange={e => setEmail(e.target.value)}
+              value={email}
+              onChange={e => setValues({ ...values, email: e.target.value })}
             />
           </div>
         </Row>
@@ -55,8 +41,8 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={values.password}
-              onChange={e => setPassword(e.target.value)}
+              value={password}
+              onChange={e => setValues({ ...values, password: e.target.value })}
             />
           </div>
         </Row>
@@ -64,8 +50,8 @@ const Signup: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              addUser({ email: values.email, password: values.password });
-              setViewer({ email: values.password });
+              addUser({ email, password });
+              setViewer({ email });
             }}
           >
             Sign up

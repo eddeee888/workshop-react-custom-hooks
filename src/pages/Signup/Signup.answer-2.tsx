@@ -4,16 +4,10 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
-import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2b';
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2';
 
 const Signup: React.FunctionComponent = () => {
-  const [
-    { email, password },
-    { setEmail, setPassword }
-  ] = useAuthenticationForm({
-    email: '',
-    password: ''
-  });
+  const { emailObj, passwordObj } = useAuthenticationForm();
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -33,8 +27,8 @@ const Signup: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={emailObj.value}
+              onChange={e => emailObj.handleChange(e.target.value)}
             />
           </div>
         </Row>
@@ -46,8 +40,8 @@ const Signup: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              value={passwordObj.value}
+              onChange={e => passwordObj.handleChange(e.target.value)}
             />
           </div>
         </Row>
@@ -55,8 +49,8 @@ const Signup: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              addUser({ email, password });
-              setViewer({ email });
+              addUser({ email: emailObj.value, password: passwordObj.value });
+              setViewer({ email: emailObj.value });
             }}
           >
             Sign up

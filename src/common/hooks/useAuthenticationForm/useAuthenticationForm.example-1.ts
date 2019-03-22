@@ -5,10 +5,8 @@ interface State {
   password: string;
 }
 
-function useAuthenticationForm(
-  initialValues: State
-): [State, Dispatch<SetStateAction<State>>] {
-  const [values, setValues] = useState<State>(initialValues);
+function useAuthenticationForm(): [State, Dispatch<SetStateAction<State>>] {
+  const [values, setValues] = useState<State>({ email: '', password: '' });
 
   return [values, setValues];
 }
