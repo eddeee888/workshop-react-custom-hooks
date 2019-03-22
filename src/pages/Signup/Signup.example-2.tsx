@@ -4,23 +4,13 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
-import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-2a';
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-2';
 
 const Signup: React.FunctionComponent = () => {
-  const [values, setValues] = useAuthenticationForm({
-    email: '',
-    password: ''
-  });
-
-  const { email, password } = values;
-
-  function setEmail(email: string): void {
-    setValues({ email, ...values });
-  }
-
-  function setPassword(password: string): void {
-    setValues({ password, ...values });
-  }
+  const [
+    { email, password },
+    { setEmail, setPassword }
+  ] = useAuthenticationForm();
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);

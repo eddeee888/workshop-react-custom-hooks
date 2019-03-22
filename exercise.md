@@ -1,18 +1,17 @@
-## Exercise 1: Create wrapper functions from `useState` updater
+## Exercise 1: Create a custom hook
 
-With traditional `setState` function, we have to pass an object containing the value that needs to be updated. For signup form, if we use traditional `setState`, we would have to call `setState({email})` or `setState({password})`.
+Hook is a great way to reuse functionality. In our app, we can see that Login and Signup both have `State` and `{ email: '', password: ''}` declared, and they both return `[values, setValues]`.
+We can create a hook called `useAuthenticationForm()` so we don't have to repeat the same thing in both files!
 
-However, with the updater function we get from `useState`, we have to pass a complete object that matches intial shape which involves spreading existing values into the object. i.e. `setValues({...values, email})` or `setValues({...values, password})`
+Once 'hooked' onto a component, the hooks will create seperated component states, making it possible to reuse on different components.
 
-We can create wrapper functions to make them a bit easier to use (and type)
-
-How it works:
+How it should work:
 
 `src/pages/Signup/Signup.example-1.tsx`
 
 Exercise 1:
 
-- Create `setEmail` and `setPassword` functions and use them for the `Login` page email and password inputs.
+- Update `Login` form to use the same `useAuthenticationForm()`
 
 `src/pages/Login/Login.tsx`
 
@@ -20,26 +19,45 @@ Answer:
 
 `src/pages/Login/Login.answer-1.tsx`
 
-## Exercise 2: Create a custom hook to share common logic
+## Exercise 2: Custom return value
 
-Hook is a great way to re-use functionalities. Two components using the same hooks will benefit from having the same behaviour. For example, `useState` allows us the track and update the state of the component using it (but not the actual state value).
+Current we are returning an array where the first index is the value object, and the second index is `setValues` function. This function typing is hard to understand, and using it is pretty hard as well as we need to destructure the values object. We can create wrapper functions and return them instead of the generic `setValues` function.
 
-In our application, `Login` and `Signup` do have very similar behaviour: we need to track and update values of `email` and `password`. We can create a custom hook in this case to extract this behaviour. Let's call that hook `useAuthenticationForm` (note that all of our hooks should have `use` prefix). When we create our own hook, we are free to choose what we return.
+How it should work:
 
-How it works:
-
-`src/pages/Signup/Signup.example-2a`
+`src/pages/Signup/Signup.example-2.tsx`
 
 Exercise 2:
 
-- Bring `setEmail` and `setPassword` into `useAuthenticationForm`
-- Change the return value of `useAuthenticationForm`. Instead of returning `setValues`, return an object that contains `setEmail` and `setPassword` (check how we can use it in `src/pages/Signup/Signup.example-2a`)
+Update `useAuthenticationForm`: instead of returning an array , return an object where:
+
+- the keys are `email` and `password` (or whatever you like. In the answer, we use `emailObj` and `passwordObj` to distinguish from the email and password values)
+- the value of each key is an object where:
+  - `value` being the value of the key i.e. `email` value and `password value`
+  - `handleChange` being the set function i.e. `setEmail` and `setPassword`
 
 `src/common/hooks/useAuthenticationForm/useAuthenticationForm.ts`
 
 Answer:
 
-`src/pages/Login/Login.answer-2b.tsx`
+`src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2.ts`
+
+Hint:
+
+- You can use the following as the return type:
+
+```
+interface ReturnValue {
+  email: {
+    value: string;
+    handleChange: (email: string) => void;
+  };
+  passwordObj: {
+    value: string;
+    handleChange: (password: string) => void;
+  };
+}
+```
 
 ## Exercise 3: Create custom hook to handle form inputs
 
@@ -53,13 +71,17 @@ How it should work:
 
 Exercise 3:
 
-`useForm` hook:
+Create `useForm` hook:
 
 - should take an object containing input names with their initial values. (same as the `State` interface of `Survey`)
 - should return an array where the value at first index is the form values
 - The second index of the array should contain an object that contains 3 properties: `name`, `value`, `onChange` that can be spread into inputs.
 
 `src/common/hooks/useForm/useForm.ts`
+
+How it can be used:
+
+`src/pages/Survey/Survey.example-3.tsx`
 
 Answer:
 

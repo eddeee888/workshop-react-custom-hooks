@@ -4,13 +4,10 @@ import Paper from 'src/common/components/Paper';
 import Row from 'src/common/components/Row';
 import UsersContext from 'src/common/components/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext';
-import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2b';
+import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2';
 
 const Login: React.FunctionComponent = () => {
-  const [
-    { email, password },
-    { setEmail, setPassword }
-  ] = useAuthenticationForm({ email: '', password: '' });
+  const { emailObj, passwordObj } = useAuthenticationForm();
 
   const [error, setError] = useState('');
 
@@ -32,8 +29,8 @@ const Login: React.FunctionComponent = () => {
           <div>
             <input
               name="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={emailObj.value}
+              onChange={e => emailObj.handleChange(e.target.value)}
             />
           </div>
         </Row>
@@ -45,8 +42,8 @@ const Login: React.FunctionComponent = () => {
             <input
               name="password"
               type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              value={passwordObj.value}
+              onChange={e => passwordObj.handleChange(e.target.value)}
             />
           </div>
         </Row>
@@ -59,10 +56,13 @@ const Login: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              const valid = checkUserCredentials(email, password);
+              const valid = checkUserCredentials(
+                emailObj.value,
+                passwordObj.value
+              );
 
               if (valid) {
-                setViewer({ email });
+                setViewer({ email: emailObj.value });
               } else {
                 setError(
                   'The email/password combination you entered is incorrect.'

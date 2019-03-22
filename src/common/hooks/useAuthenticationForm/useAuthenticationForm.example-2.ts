@@ -10,8 +10,8 @@ interface StateFn {
   setPassword: (email: string) => void;
 }
 
-function useAuthenticationForm(initialValues: State): [State, StateFn] {
-  const [values, setValues] = useState<State>(initialValues);
+function useAuthenticationForm(): [State, StateFn] {
+  const [values, setValues] = useState<State>({ email: '', password: '' });
 
   function setEmail(email: string): void {
     setValues({ email, ...values });
