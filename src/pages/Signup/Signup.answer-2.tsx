@@ -7,7 +7,7 @@ import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
 import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2';
 
 const Signup: React.FunctionComponent = () => {
-  const { emailObj, passwordObj } = useAuthenticationForm();
+  const [values, inputProps] = useAuthenticationForm();
 
   const { addUser } = useContext(UsersContext);
   const { viewer, setViewer } = useContext(ViewerContext);
@@ -26,9 +26,9 @@ const Signup: React.FunctionComponent = () => {
           </div>
           <div>
             <input
-              name="email"
-              value={emailObj.value}
-              onChange={e => emailObj.handleChange(e.target.value)}
+              name={inputProps.email.name}
+              value={inputProps.email.value}
+              onChange={inputProps.email.onChange}
             />
           </div>
         </Row>
@@ -38,10 +38,10 @@ const Signup: React.FunctionComponent = () => {
           </div>
           <div>
             <input
-              name="password"
               type="password"
-              value={passwordObj.value}
-              onChange={e => passwordObj.handleChange(e.target.value)}
+              name={inputProps.password.name}
+              value={inputProps.password.value}
+              onChange={inputProps.password.onChange}
             />
           </div>
         </Row>
@@ -49,8 +49,8 @@ const Signup: React.FunctionComponent = () => {
           <button
             type="button"
             onClick={() => {
-              addUser({ email: emailObj.value, password: passwordObj.value });
-              setViewer({ email: emailObj.value });
+              addUser(values);
+              setViewer({ email: values.email });
             }}
           >
             Sign up

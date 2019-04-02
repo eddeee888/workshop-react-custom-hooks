@@ -4,20 +4,20 @@ interface State {
   [key: string]: any;
 }
 
-interface InputProps {
+interface InputProp {
   name: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-type Inputs<S> = { [key in keyof S]?: InputProps };
+type InputPropsObject<S> = { [key in keyof S]?: InputProp };
 
-function useForm<S extends State>(initialValues: S): [S, Inputs<S>] {
+function useForm<S extends State>(initialValues: S): [S, InputPropsObject<S>] {
   const [values, setValues] = useState<S>(initialValues);
 
-  const inputs: Inputs<S> = {};
+  const inputs: InputPropsObject<S> = {};
 
-  (Object.keys(values) as Array<keyof Inputs<S>>).forEach(key => {
+  (Object.keys(values) as Array<keyof InputPropsObject<S>>).forEach(key => {
     inputs[key] = {
       name: key.toString(),
       value: values[key],

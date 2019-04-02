@@ -12,16 +12,13 @@ interface StateFn {
 
 function useAuthenticationForm(): [State, StateFn] {
   const [values, setValues] = useState<State>({ email: '', password: '' });
-
-  function setEmail(email: string): void {
-    setValues({ email, ...values });
-  }
-
-  function setPassword(password: string): void {
-    setValues({ password, ...values });
-  }
-
-  return [values, { setEmail, setPassword }];
+  return [
+    values,
+    {
+      setEmail: (email: string) => setValues({ email, ...values }),
+      setPassword: (password: string) => setValues({ password, ...values })
+    }
+  ];
 }
 
 export default useAuthenticationForm;

@@ -18,23 +18,11 @@ interface InputProps {
 }
 
 function useAuthenticationForm(): [State, InputProps] {
+  // @ts-ignore
   const [values, setValues] = useState<State>({ email: '', password: '' });
-  const { email, password } = values;
 
-  const inputProps: InputProps = {
-    email: {
-      name: 'email',
-      value: email,
-      onChange: e => {
-        setValues({ ...values, email: e.target.value });
-      }
-    },
-    password: {
-      name: 'password',
-      value: password,
-      onChange: e => setValues({ ...values, password: e.target.value })
-    }
-  };
+  // @ts-ignore
+  const inputProps: InputProps = {};
 
   return [values, inputProps];
 }
