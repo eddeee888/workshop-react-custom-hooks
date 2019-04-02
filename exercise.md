@@ -3,7 +3,7 @@
 Hook is a great way to reuse functionality. In our app, we can see that Login and Signup both have `State` and `{ email: '', password: ''}` declared, and they both return `[values, setValues]`.
 We can create a hook called `useAuthenticationForm()` so we don't have to repeat the same thing in both files!
 
-Once 'hooked' onto a component, the hooks will create seperated component states, making it possible to reuse on different components.
+Once 'hooked' onto a component, the hooks will create seperated component states, making it possible to reuse its functionality different components.
 
 How it should work:
 
@@ -29,35 +29,20 @@ How it should work:
 
 Exercise 2:
 
-Update `useAuthenticationForm`: instead of returning an array , return an object where:
+Update `useAuthenticationForm`: Update the return value to be an array where:
 
-- the keys are `email` and `password` (or whatever you like. In the answer, we use `emailObj` and `passwordObj` to distinguish from the email and password values)
-- the value of each key is an object where:
-  - `value` being the value of the key i.e. `email` value and `password value`
-  - `handleChange` being the set function i.e. `setEmail` and `setPassword`
+- Value of the first index is the state that comes from `useState`
+- Value of the second index is an object where:
+    - the keys are `email` and `object` 
+    - the value of each key is an object containing `name`, `value` and `onChange` which can be passed into an input
 
-`src/common/hooks/useAuthenticationForm/useAuthenticationForm.ts`
+To get started, copy the content of `src/common/hooks/useAuthenticationForm/useAuthenticationForm.exercise-2.ts` into `src/common/hooks/useAuthenticationForm/useAuthenticationForm.ts`
+
+Once that is done, you can replace the content of `src/pages/Signup/Signup.tsx` with `src/pages/Signup/Signup-answer-2.tsx`, then replace `useAuthenticationForm.answer-2` with your hook and it should still work
 
 Answer:
 
 `src/common/hooks/useAuthenticationForm/useAuthenticationForm.answer-2.ts`
-
-Hint:
-
-- You can use the following as the return type:
-
-```
-interface ReturnValue {
-  email: {
-    value: string;
-    handleChange: (email: string) => void;
-  };
-  passwordObj: {
-    value: string;
-    handleChange: (password: string) => void;
-  };
-}
-```
 
 ## Exercise 3: Create custom hook to handle form inputs
 
@@ -74,14 +59,15 @@ Exercise 3:
 Create `useForm` hook:
 
 - should take an object containing input names with their initial values. (same as the `State` interface of `Survey`)
-- should return an array where the value at first index is the form values
-- The second index of the array should contain an object that contains 3 properties: `name`, `value`, `onChange` that can be spread into inputs.
+- should return an array where:
+- Value of the first index is the form values
+- Value of the second index of the array should contain an object where:
+  - the keys are the the key of values i.e. `email`, `firstName`, `lastName`, `question1`, etc.
+  - the values are objects containing `name`, `value`, `onChange` function (similar to exercise 2)
 
-`src/common/hooks/useForm/useForm.ts`
+The useForm hook has been created and typed here: `src/common/hooks/useForm/useForm.ts`
 
-How it can be used:
-
-`src/pages/Survey/Survey.example-3.tsx`
+If this is implemented correctly, you can replace the content of `src/pages/Survey/Survey.tsx` with `src/pages/Survey/Survey.example-3.tsx` then replace `useForm.answer-3` with your hook and it should still work.
 
 Answer:
 
@@ -125,24 +111,4 @@ Then the result should be:
 
 ```
 (Object.keys(values) as Array<keyof Inputs<S>>).forEach(key => {});
-```
-
-3. Final typing may look like this:
-
-```
-interface State {
-  [key: string]: any;
-}
-
-interface InputProps {
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-type Inputs<S> = { [key in keyof S]?: InputProps };
-
-function useForm<S extends State>(initialValues: S): [S, Inputs<S>] {
-
-}
 ```
