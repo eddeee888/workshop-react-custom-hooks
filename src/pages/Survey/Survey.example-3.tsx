@@ -12,7 +12,7 @@ interface Values {
   question3: string;
 }
 
-const Survey: React.FunctionComponent = () => {
+function Survey() {
   const [values, inputs] = useForm<Values>({
     email: '',
     firstName: '',
@@ -95,6 +95,6 @@ const Survey: React.FunctionComponent = () => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Survey;

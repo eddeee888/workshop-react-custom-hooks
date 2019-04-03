@@ -6,7 +6,7 @@ import UsersContext from 'src/common/components/UsersContext';
 import ViewerContext from 'src/common/components/ViewerContext';
 import useAuthenticationForm from 'src/common/hooks/useAuthenticationForm/useAuthenticationForm.example-1';
 
-const Login: React.FunctionComponent = () => {
+function Login() {
   const [values, setValues] = useAuthenticationForm();
 
   const [error, setError] = useState('');
@@ -73,5 +73,5 @@ const Login: React.FunctionComponent = () => {
       </form>
     </Paper>
   );
-};
+}
 export default Login;

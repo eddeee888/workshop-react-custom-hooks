@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import ViewerContext from '../ViewerContext';
 import './Nav.css';
 
-const Nav: React.FunctionComponent = () => {
+function Nav() {
   const { viewer } = useContext(ViewerContext);
   return (
     <nav>
@@ -23,6 +23,6 @@ const Nav: React.FunctionComponent = () => {
       )}
     </nav>
   );
-};
+}
 
 export default Nav;
