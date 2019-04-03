@@ -1,8 +1,8 @@
 import React from 'react';
 import './Paper.css';
 
-const Paper: React.FunctionComponent = ({ children }) => (
-  <div className="paper">{children}</div>
-);
+function Paper({ children }: { children: React.ReactNode }) {
+  return <div className="paper">{children}</div>;
+}
 
 export default Paper;

@@ -11,7 +11,7 @@ interface State {
   question3: string;
 }
 
-const Survey: React.FunctionComponent = () => {
+function Survey() {
   const [values, setValues] = useState<State>({
     email: '',
     firstName: '',
@@ -135,6 +135,6 @@ const Survey: React.FunctionComponent = () => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Survey;

@@ -10,7 +10,7 @@ interface State {
   password: string;
 }
 
-const Login: React.FunctionComponent = () => {
+function Login() {
   const [values, setValue] = useState<State>({
     email: '',
     password: ''
@@ -81,5 +81,5 @@ const Login: React.FunctionComponent = () => {
       </form>
     </Paper>
   );
-};
+}
 export default Login;

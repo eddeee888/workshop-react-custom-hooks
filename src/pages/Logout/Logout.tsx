@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import ViewerContext from 'src/common/components/ViewerContext/ViewerContext';
 
-const Logout: React.FunctionComponent = () => {
+function Logout() {
   const { viewer, clearViewer } = useContext(ViewerContext);
 
   if (!viewer) {
@@ -18,6 +18,6 @@ const Logout: React.FunctionComponent = () => {
   });
 
   return <Redirect to="/" />;
-};
+}
 
 export default Logout;
